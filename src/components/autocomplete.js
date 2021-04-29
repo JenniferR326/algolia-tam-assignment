@@ -2,10 +2,11 @@ import algoliasearch from 'algoliasearch';
 import instantsearch from 'instantsearch.js';
 
 // Instant Search Widgets
-import { hits, searchBox, configure } from 'instantsearch.js/es/widgets';
+import { hits, searchBox, configure, index } from 'instantsearch.js/es/widgets';
 
 // Autocomplete Template
 import autocompleteProductTemplate from '../templates/autocomplete-product';
+import autocompleteQuerySuggestionTemplate from '../templates/autocomplete-query-suggestion';
 
 /**
  * @class Autocomplete
@@ -28,12 +29,12 @@ class Autocomplete {
    */
   _registerClient() {
     this._searchClient = algoliasearch(
-      'VYLEWMPKEZ',
-      '8940a18fde155adf3f74b0912c267aa4'
+      'M0L03UF7TB',
+      'a40064f8f1e4b1d67e7f2e5db421fbd9'
     );
 
     this._searchInstance = instantsearch({
-      indexName: 'ecommerce-v2',
+      indexName: 'TAM-Exercise',
       searchClient: this._searchClient,
     });
   }
@@ -45,16 +46,36 @@ class Autocomplete {
    */
   _registerWidgets() {
     this._searchInstance.addWidgets([
-      configure({
-        hitsPerPage: 3,
-      }),
       searchBox({
         container: '#searchbox',
       }),
-      hits({
-        container: '#autocomplete-hits',
-        templates: { item: autocompleteProductTemplate },
-      }),
+      index({
+        indexName: 'TAM-Exercise',
+      }).addWidgets([
+        configure({
+          hitsPerPage: 3,
+        }),
+
+        hits({
+          container: '#autocomplete-hits',
+          templates: { item: autocompleteProductTemplate },
+        }),
+      ]),
+
+      index({
+        indexName: 'TAM-Exercise_query_suggestions2',
+      }).addWidgets([
+        configure({
+          hitsPerPage: 3,
+        }),
+
+        hits({
+          container: '#autocomplete-suggestions',
+          templates: {
+            item: autocompleteQuerySuggestionTemplate,
+          },
+        }),
+      ]),
     ]);
   }
 
@@ -65,6 +86,7 @@ class Autocomplete {
    */
   _startSearch() {
     this._searchInstance.start();
+    // this._querySuggestionsInstance.start();
   }
 }
 
