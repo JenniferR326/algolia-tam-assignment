@@ -12,7 +12,7 @@ Marissa
 
 Hi Marissa,
 
-Thanks for bringing this to my attention. I'm sorry to hear you are unhappy with the new dashboard design. The dashboard is desgined to ensure the integrity of customer data by preventing accidental deletions.
+Thanks for bringing this to my attention. I'm sorry to hear you are unhappy with the new dashboard design. The dashboard is designed to ensure the integrity of customer data by preventing accidental deletions.
 
 To clear or delete an index, select the index from the indices menu, then click the 'Manage index' dropdown and select either the 'Clear' or 'Delete' option. You will be prompted to confirm before action is taken.
 
